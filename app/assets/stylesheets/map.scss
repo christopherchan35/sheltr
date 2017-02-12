@@ -6,6 +6,13 @@
   height: 90vh;
 }
 
+#mapContainer {
+  position: fixed;
+  right: 0;
+  height: 100%;
+  width: 50%
+}
+
 .adp-substep{
   font-size: 12px;
 }
@@ -30,4 +37,3 @@
 .adp-substep div:last-child, .adp-substep div:nth-last-child(2) {
   display: none;
 }
-
