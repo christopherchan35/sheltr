@@ -4,7 +4,8 @@ Rails.application.routes.draw do
 
   resources :shelter
 
-  get 'subKey', :to => 'shelter#subKey'
-  get 'pubKey', :to => 'shelter#pubKey'
+  get 'subKey',  :to => 'shelter#subKey'
+  get 'pubKey',  :to => 'shelter#pubKey'
+  get 'gmarkers', :to => 'shelter#gmarkers'
   resources :sheltr_test
 end
