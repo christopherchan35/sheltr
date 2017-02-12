@@ -9,16 +9,22 @@
         <th>Symbol</th>
         <th>Name</th>
         <th>Location</th>
+        <th>Route</th>
         <th>Times Open</th>
       </tr>
     </thead>
 
     <tbody>
+      <% count = 0 %>
       <% @kitchens.each do |kitchen| %>
         <tr class='kitchenrow indexRow'>
           <td><%= kitchen.letter %></td>
           <td><%= kitchen.name %></td>
           <td><%= kitchen.location %></td>
+          <td>
+            <div id = "directions<%= +count.to_s%>"></div>
+            <% count+=1 %>
+          </td>
           <td class='timesOpen center'><%= kitchen.time %></td>
         </tr>
       <% end %>
@@ -54,12 +60,88 @@
         var map;
 
         function initMap() {
+          var directionsDisplay = new google.maps.DirectionsRenderer;
+          var directionsService = new google.maps.DirectionsService;
           var uluru = {lat: 37.784517, lng: -122.405};
           map = new google.maps.Map(document.getElementById('map'), {
             zoom: 13,
             center: uluru
           });
+                  calculateAndDisplayRoute(directionsService, directionsDisplay, "150GoldenGateAve", 'directions0');
+        initMap2();
+      }
+      function initMap2() {
+        var directionsDisplay = new google.maps.DirectionsRenderer;
+        var directionsService = new google.maps.DirectionsService;
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 12,
+          center: {lat: 37.78784517, lng: -122.405}
+        });
+        calculateAndDisplayRoute(directionsService, directionsDisplay, "900PennsylvaniaAve", 'directions1');
+        initMap3();
+      }
+      function initMap3() {
+        var directionsDisplay = new google.maps.DirectionsRenderer;
+        var directionsService = new google.maps.DirectionsService;
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 12,
+          center: {lat: 37.78784517, lng: -122.405}
+        });
+        calculateAndDisplayRoute(directionsService, directionsDisplay, "1504BryantSt", 'directions2');
+        initMap4();
+      }
+      function initMap4() {
+        var directionsDisplay = new google.maps.DirectionsRenderer;
+        var directionsService = new google.maps.DirectionsService;
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 12,
+          center: {lat: 37.78784517, lng: -122.405}
+        });
+        calculateAndDisplayRoute(directionsService, directionsDisplay, "730PolkSt", 'directions3');
+        initMap5();
+      }
+      function initMap5() {
+        var directionsDisplay = new google.maps.DirectionsRenderer;
+        var directionsService = new google.maps.DirectionsService;
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 12,
+          center: {lat: 37.78784517, lng: -122.405}
+        });
+        calculateAndDisplayRoute(directionsService, directionsDisplay, "221SeventhSt", 'directions4');
+        initMap6();
+      }
+      function initMap6() {
+        var directionsDisplay = new google.maps.DirectionsRenderer;
+        var directionsService = new google.maps.DirectionsService;
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 15,
+          center: {lat: 37.78784517, lng: -122.405}
+        });
+        calculateAndDisplayRoute(directionsService, directionsDisplay, "330EllisSt", 'directions5');
+              $.ajax({
+        url: "/gmarkers",
+        type: "get"
+      })
         }
+              function calculateAndDisplayRoute(directionsService, directionsDisplay, end, div) {
+        console.log(div);
+        console.log(end)
+        directionsDisplay.setPanel(document.getElementById(div));
+
+        var start = "2ndSt&FolsomSt";
+
+        directionsService.route({
+          origin: start,
+          destination: end,
+          travelMode: 'TRANSIT'
+        }, function(response, status) {
+          if (status === 'OK') {
+            directionsDisplay.setDirections(response);
+          } else {
+            window.alert('Directions request failed due to ' + status);
+          }
+        });
+      }
       </script>
       <script async defer
       src="https://maps.googleapis.com/maps/api/js?key=<%=ENV['GOOGLE_MAPS']%>&callback=initMap">

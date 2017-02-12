@@ -1,7 +1,6 @@
 // Place all the styles related to the shelter controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
 .tdAnimateGreen {
   animation: yellowtogreen 3s forwards linear;
 }
@@ -41,7 +40,6 @@ table {
   tr td:last-child { border-top-right-radius: 20px; }
   tr td:last-child { border-bottom-right-radius: 20px; }
 
-
   td, th {
     padding: 5px;
     text-align: left;
@@ -56,4 +54,8 @@ table {
   .center {
     text-align: center;
   }
+}
+
+.kitchenrow{
+  background: skyBlue;
 }
