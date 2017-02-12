@@ -138,28 +138,6 @@
         });
       }
 
-      function calculateAndDisplayRoute2(directionsService, directionsDisplay, end, div) {
-        console.log(div);
-        console.log(end)
-        directionsDisplay.setPanel(document.getElementById(div));
-
-        var start = "2ndSt&FolsomSt";
-
-        directionsService.route({
-          origin: start,
-          destination: end,
-          travelMode: 'TRANSIT'
-        }, function(response, status) {
-          if (status === 'OK') {
-            // console.log(response);
-            directionsDisplay.setDirections(response);
-          } else {
-            window.alert('Directions request failed due to ' + status);
-          }
-        });
-      }
-
-
     </script>
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=<%=ENV['GOOGLE_MAPS']%>&callback=initMap">
