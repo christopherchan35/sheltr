@@ -17,8 +17,8 @@ Shelter.create(
   lat: 37.782199,
   lon: -122.413214,
   letter: "A",
-  red: 'http://i.imgur.com/2KFFULc.png',
-  green: 'http://i.imgur.com/MLsF2wc.png',
+  red: 'http://i.imgur.com/XOUYqwz.png',
+  green: 'http://i.imgur.com/oZ8ILqW.png',
   symbol: 'http://i.imgur.com/nyoB4Cf.png')
 
 Shelter.create(
@@ -29,8 +29,8 @@ Shelter.create(
   lat: 37.790323,
   lon: -122.404214,
   letter: "B",
-  red: 'http://i.imgur.com/qu8i5nw.png',
-  green: 'http://i.imgur.com/Jmqv2nF.png',
+  red: 'http://i.imgur.com/ZmxXflE.png',
+  green: 'http://i.imgur.com/ZOoYvjj.png',
   symbol: 'http://i.imgur.com/EvSLwVD.png')
 
 Shelter.create(
@@ -41,8 +41,8 @@ Shelter.create(
   lat: 37.777730,
   lon: -122.399833,
   letter: "C",
-  red: 'http://i.imgur.com/kNMTPpE.png',
-  green: 'http://i.imgur.com/3T0hNpr.png',
+  red: 'http://i.imgur.com/Tulxypb.png',
+  green: 'http://i.imgur.com/JFDJP9I.png',
   symbol: 'http://i.imgur.com/ctxbBU0.png')
 
 Shelter.create(
@@ -53,8 +53,8 @@ Shelter.create(
   lat: 37.776814,
   lon: -122.412128,
   letter: "D",
-  red: 'http://i.imgur.com/Rdl4TNm.png',
-  green: 'http://i.imgur.com/kYwleSn.png',
+  red: 'http://i.imgur.com/U1hzgw5.png',
+  green: 'http://i.imgur.com/p92r6QD.png',
   symbol: 'http://i.imgur.com/IEgzBPR.png')
 
 Shelter.create(
@@ -65,8 +65,8 @@ Shelter.create(
   lat: 37.782111,
   lon: -122.415391,
   letter: "E",
-  red: 'http://i.imgur.com/TiMH1CP.png',
-  green: 'http://i.imgur.com/1sD1gC5.png',
+  red: 'http://i.imgur.com/13FPlxx.png',
+  green: 'http://i.imgur.com/oAt9Xnt.png',
   symbol: 'http://i.imgur.com/pcjEVMk.png')
 
 Shelter.create(
@@ -77,8 +77,8 @@ Shelter.create(
   lat: 37.788570,
   lon: -122.412011,
   letter: "F",
-  red: 'http://i.imgur.com/pfuVDmb.png',
-  green: 'http://i.imgur.com/XjPyxn3.png',
+  red: 'http://i.imgur.com/vHUpiqH.png',
+  green: 'http://i.imgur.com/Ma0AnVX.png',
   symbol: 'http://i.imgur.com/EfROrkN.png')
 
 
