@@ -3,5 +3,8 @@ Rails.application.routes.draw do
   root 'shelter#index'
 
   resources :shelter
+
+  get 'subKey', :to => 'shelter#subKey'
+  get 'pubKey', :to => 'shelter#pubKey'
   resources :sheltr_test
 end

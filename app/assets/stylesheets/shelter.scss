@@ -1,3 +1,33 @@
 // Place all the styles related to the shelter controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.tdAnimateClass {
+  animation: redtowhite 3s forwards linear;
+}
+
+@keyframes redtowhite{
+  0% {
+    background: red;
+  }
+  100% {
+    background: white;
+  }
+}
+
+table {
+  td, th {
+    padding: 5px;
+    text-align: left;
+    font-size: 16px;
+  }
+
+  input {
+    font-size: 16px;
+    width: 100%;
+  }
+
+  .center {
+    text-align: center;
+  }
+}
