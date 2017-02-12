@@ -9,5 +9,4 @@ Rails.application.routes.draw do
   get 'pubKey',  :to => 'shelter#pubKey'
   get 'gmarkers', :to => 'shelter#gmarkers'
   get 'gmarkers2', :to => 'kitchen#gmarkers2'
-  resources :sheltr_test
 end
