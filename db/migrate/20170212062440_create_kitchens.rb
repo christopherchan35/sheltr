@@ -7,6 +7,7 @@ class CreateKitchens < ActiveRecord::Migration[5.0]
       t.float :lat
       t.float :lon
       t.string :letter
+      t.string :symbol
 
       t.timestamps
     end
