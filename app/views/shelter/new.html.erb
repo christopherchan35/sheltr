@@ -3,7 +3,7 @@
 <table>
   <tr>
   <th>Shelter</th>
-  <th># Beds</th>
+  <th>Beds Available</th>
   <th>Update Beds</th>
   </tr>
   <% @shelters.each do |shelter| %>
@@ -12,7 +12,9 @@
         <td><%= shelter.name %></td>
         <td><%= shelter.open_beds %></td>
         <td>
-          <input type='text' id=<%= "#{shelter.id}input" %> value=<%= shelter.open_beds %>
+          <input type='number' id=<%= "#{shelter.id}input" %> value=<%= shelter.open_beds %>
+          max=<%= shelter.total_beds %>
+          min='0'
         </td>
         <td>
           <input type='submit'>
