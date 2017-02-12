@@ -18,7 +18,8 @@ Shelter.create(
   lon: -122.413214,
   letter: "A",
   red: 'http://i.imgur.com/2KFFULc.png',
-  green: 'http://i.imgur.com/MLsF2wc.png')
+  green: 'http://i.imgur.com/MLsF2wc.png',
+  symbol: 'http://i.imgur.com/nyoB4Cf.png')
 
 Shelter.create(
   name: "One Brick",
@@ -29,7 +30,8 @@ Shelter.create(
   lon: -122.404214,
   letter: "B",
   red: 'http://i.imgur.com/qu8i5nw.png',
-  green: 'http://i.imgur.com/Jmqv2nF.png')
+  green: 'http://i.imgur.com/Jmqv2nF.png',
+  symbol: 'http://i.imgur.com/EvSLwVD.png')
 
 Shelter.create(
   name: "St Vincent de Paul Society",
@@ -40,7 +42,8 @@ Shelter.create(
   lon: -122.399833,
   letter: "C",
   red: 'http://i.imgur.com/kNMTPpE.png',
-  green: 'http://i.imgur.com/3T0hNpr.png')
+  green: 'http://i.imgur.com/3T0hNpr.png',
+  symbol: 'http://i.imgur.com/ctxbBU0.png')
 
 Shelter.create(
   name: "Episcopal Community Services",
@@ -51,7 +54,8 @@ Shelter.create(
   lon: -122.412128,
   letter: "D",
   red: 'http://i.imgur.com/Rdl4TNm.png',
-  green: 'http://i.imgur.com/kYwleSn.png')
+  green: 'http://i.imgur.com/kYwleSn.png',
+  symbol: 'http://i.imgur.com/IEgzBPR.png')
 
 Shelter.create(
   name: "Tenderloin Housing Clinic",
@@ -62,7 +66,8 @@ Shelter.create(
   lon: -122.415391,
   letter: "E",
   red: 'http://i.imgur.com/TiMH1CP.png',
-  green: 'http://i.imgur.com/1sD1gC5.png')
+  green: 'http://i.imgur.com/1sD1gC5.png',
+  symbol: 'http://i.imgur.com/pcjEVMk.png')
 
 Shelter.create(
   name: "Larkin Street Services",
@@ -73,7 +78,8 @@ Shelter.create(
   lon: -122.412011,
   letter: "F",
   red: 'http://i.imgur.com/pfuVDmb.png',
-  green: 'http://i.imgur.com/XjPyxn3.png')
+  green: 'http://i.imgur.com/XjPyxn3.png',
+  symbol: 'http://i.imgur.com/EfROrkN.png')
 
 
 Kitchen.create(

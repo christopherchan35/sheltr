@@ -25,7 +25,7 @@
     <% count = 0 %>
     <% @shelters.each do |shelter| %>
       <tr class='shelterrow indexRow' id=<%= "row#{shelter.id}" %>>
-        <td><%= shelter.letter %></td>
+        <td><img src='<%= shelter.symbol %>'></img></td>
         <td><%= shelter.name %></td>
         <td><%= shelter.location %></td>
         <td>

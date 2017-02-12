@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20170212062440) do
     t.string   "letter"
     t.string   "red"
     t.string   "green"
+    t.string   "symbol"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
