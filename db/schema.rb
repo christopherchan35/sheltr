@@ -20,6 +20,8 @@ ActiveRecord::Schema.define(version: 20170211233551) do
     t.string   "location"
     t.integer  "total_beds"
     t.integer  "open_beds"
+    t.float    "lat"
+    t.float    "lon"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
