@@ -3,9 +3,11 @@ Rails.application.routes.draw do
   root 'shelter#index'
 
   resources :shelter
+  resources :kitchen
 
   get 'subKey',  :to => 'shelter#subKey'
   get 'pubKey',  :to => 'shelter#pubKey'
   get 'gmarkers', :to => 'shelter#gmarkers'
+  get 'gmarkers2', :to => 'kitchen#gmarkers2'
   resources :sheltr_test
 end
