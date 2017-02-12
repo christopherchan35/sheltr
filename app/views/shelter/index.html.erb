@@ -107,12 +107,13 @@
         type: "get"
       })
       .done(function(response){
+        window.databaseInfo = response
         var currentLocation = new google.maps.Marker({
           position:{
             lat: 37.784517,
             lng: -122.397194
           },
-          icon: 'http://i.stack.imgur.com/orZ4x.png',
+          icon: 'https://d30y9cdsu7xlg0.cloudfront.net/png/12314-200.png',
           map: map
         });
 
@@ -126,6 +127,7 @@
           } else {
             pin = item.red
           }
+          window.map = map;
           var mark = new google.maps.Marker(
             {
               position:{
@@ -225,14 +227,14 @@ request.fail(function(r){
   })
 
   addMarker = function(message){
-    console.log(message)
-    var map = document.getElementById('map')
-    console.log(map)
-    var item = (+message.message.name - 1)
-    var row = document.getElementById('row' + item)
-    var total = $(row).children('.totalBeds').text()
-    var open = $(row).children('.open_beds').text()
+    var map = window.map
+    var item = window.databaseInfo.filter((i) => {
+      return i.id === +message.message.name
+    })[0]
+    console.log(item)
+    var row = document.getElementById('row' + item.id)
     var pin;
+    var open = message.message.value
     if (+open >= 10) {
       pin = item.green
     } else {
