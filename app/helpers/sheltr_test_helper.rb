@@ -1,0 +1,2 @@
+module SheltrTestHelper
+end

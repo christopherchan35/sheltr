@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   root 'shelter#index'
 
   resources :shelter
+  resources :sheltr_test
 end
