@@ -32,34 +32,9 @@
 
 <br>
     <div id="map"></div>
-    <div id="map2"></div>
-    <div id="map3"></div>
-    <div id="map4"></div>
-    <div id="map5"></div>
-    <div id="map6"></div>
     <script>
 
-      $.ajax({
-        url: "/gmarkers",
-        type: "get"
-      })
-      .done(function(response){
-        console.log(response)
-        response.forEach(function(item) {
-          var mark = new google.maps.Marker(
-            {
-              position:{
-                lat:item.lat,
-                lng:item.lon
-              },
-              label: item.letter,
-              map:map
-            })
-        });
-      })
-      .fail(function(error) {
-        console.log(error)
-      });
+
 
       // var gmarkerPromise = new Promise(function(resolve, reject){
       //   // going
@@ -89,8 +64,8 @@
         var directionsDisplay = new google.maps.DirectionsRenderer;
         var directionsService = new google.maps.DirectionsService;
         var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 12,
-          center: {lat: 37.47, lng: -122.25}
+          zoom: 15,
+          center: {lat: 37.78784517, lng: -122.405}
         });
         calculateAndDisplayRoute(directionsService, directionsDisplay, "150GoldenGateAve", 'directions0');
         initMap2();
@@ -98,9 +73,9 @@
       function initMap2() {
         var directionsDisplay = new google.maps.DirectionsRenderer;
         var directionsService = new google.maps.DirectionsService;
-        var map = new google.maps.Map(document.getElementById('map2'), {
+        var map = new google.maps.Map(document.getElementById('map'), {
           zoom: 12,
-          center: {lat: 37.47, lng: -122.25}
+          center: {lat: 37.78784517, lng: -122.405}
         });
         calculateAndDisplayRoute(directionsService, directionsDisplay, "237KearnySt", 'directions1');
         initMap3();
@@ -108,9 +83,9 @@
       function initMap3() {
         var directionsDisplay = new google.maps.DirectionsRenderer;
         var directionsService = new google.maps.DirectionsService;
-        var map = new google.maps.Map(document.getElementById('map3'), {
+        var map = new google.maps.Map(document.getElementById('map'), {
           zoom: 12,
-          center: {lat: 37.47, lng: -122.25}
+          center: {lat: 37.78784517, lng: -122.405}
         });
         calculateAndDisplayRoute(directionsService, directionsDisplay, "525FifththSt", 'directions2');
         initMap4();
@@ -118,9 +93,9 @@
       function initMap4() {
         var directionsDisplay = new google.maps.DirectionsRenderer;
         var directionsService = new google.maps.DirectionsService;
-        var map = new google.maps.Map(document.getElementById('map4'), {
+        var map = new google.maps.Map(document.getElementById('map'), {
           zoom: 12,
-          center: {lat: 37.47, lng: -122.25}
+          center: {lat: 37.78784517, lng: -122.405}
         });
         calculateAndDisplayRoute(directionsService, directionsDisplay, "165EighththSt", 'directions3');
         initMap5();
@@ -128,9 +103,9 @@
       function initMap5() {
         var directionsDisplay = new google.maps.DirectionsRenderer;
         var directionsService = new google.maps.DirectionsService;
-        var map = new google.maps.Map(document.getElementById('map5'), {
+        var map = new google.maps.Map(document.getElementById('map'), {
           zoom: 12,
-          center: {lat: 37.47, lng: -122.25}
+          center: {lat: 37.78784517, lng: -122.405}
         });
         calculateAndDisplayRoute(directionsService, directionsDisplay, "126HydeSt", 'directions4');
         initMap6();
@@ -138,11 +113,31 @@
       function initMap6() {
         var directionsDisplay = new google.maps.DirectionsRenderer;
         var directionsService = new google.maps.DirectionsService;
-        var map = new google.maps.Map(document.getElementById('map6'), {
-          zoom: 12,
-          center: {lat: 37.47, lng: -122.25}
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 15,
+          center: {lat: 37.78784517, lng: -122.405}
         });
         calculateAndDisplayRoute(directionsService, directionsDisplay, "701SutterSt", 'directions5');
+              $.ajax({
+        url: "/gmarkers",
+        type: "get"
+      })
+      .done(function(response){
+        response.forEach(function(item) {
+          var mark = new google.maps.Marker(
+            {
+              position:{
+                lat:item.lat,
+                lng:item.lon
+              },
+              label: item.letter,
+              map:map
+            })
+        });
+      })
+      .fail(function(error) {
+        console.log(error)
+      });
       }
 
       function calculateAndDisplayRoute(directionsService, directionsDisplay, end, div) {
