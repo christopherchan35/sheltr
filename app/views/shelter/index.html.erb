@@ -24,8 +24,8 @@
       <% count = 0 %>
       <% @shelters.each do |shelter| %>
         <tr class='shelterrow indexRow' id=<%= "row#{shelter.id}" %>>
-          <td><%= shelter.letter %></td>
-          <td><%= shelter.name %></td>
+          <td><img src='<%= shelter.symbol %>'></img></td>
+          <td>  &nbsp;&nbsp; <%= shelter.name %></td>
           <td><%= shelter.location %></td>
 
           <td class='totalBeds center'><%= shelter.total_beds %></td>
@@ -116,7 +116,7 @@
             lat: 37.784517,
             lng: -122.397194
           },
-          icon: 'https://d30y9cdsu7xlg0.cloudfront.net/png/12314-200.png',
+          icon: 'http://i.imgur.com/naRwq2I.png',
           map: map
         });
 

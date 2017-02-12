@@ -37,28 +37,6 @@
       <div id="map"></div>
       <script>
 
-        $.ajax({
-          url: "/gmarkers2",
-          type: "get"
-        })
-        .done(function(response){
-          console.log(response)
-          response.forEach(function(item) {
-            var mark = new google.maps.Marker(
-              {
-                position:{
-                  lat:item.lat,
-                  lng:item.lon
-                },
-                label: item.letter,
-                map:map
-              })
-          });
-        })
-        .fail(function(error) {
-          console.log(error)
-        });
-
         var map;
 
         function initMap() {
@@ -121,12 +99,29 @@
           center: {lat: 37.78784517, lng: -122.405}
         });
         calculateAndDisplayRoute(directionsService, directionsDisplay, "330EllisSt", 'directions5');
-              $.ajax({
-        url: "/gmarkers",
-        type: "get"
-      })
+        $.ajax({
+          url: "/gmarkers2",
+          type: "get"
+        })
+        .done(function(response){
+          console.log(response)
+          response.forEach(function(item) {
+            var mark = new google.maps.Marker(
+              {
+                position:{
+                  lat:item.lat,
+                  lng:item.lon
+                },
+                label: item.letter,
+                map:map
+              })
+          });
+        })
+        .fail(function(error) {
+          console.log(error)
+        });
         }
-              function calculateAndDisplayRoute(directionsService, directionsDisplay, end, div) {
+        function calculateAndDisplayRoute(directionsService, directionsDisplay, end, div) {
         console.log(div);
         console.log(end)
         directionsDisplay.setPanel(document.getElementById(div));

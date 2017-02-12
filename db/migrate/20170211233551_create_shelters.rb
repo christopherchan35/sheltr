@@ -10,6 +10,7 @@ class CreateShelters < ActiveRecord::Migration[5.0]
       t.string :letter
       t.string :red
       t.string :green
+      t.string :symbol
 
       t.timestamps
     end
