@@ -25,20 +25,68 @@
 <br>
     <div id="map"></div>
     <script>
+      
+      $.ajax({
+        url: "/gmarkers",
+        type: "get"
+      })
+      .done(function(response){
+        console.log(response)
+        response.forEach(function(item) {
+          var mark = new google.maps.Marker(
+            {
+              position:{
+                lat:item.lat,
+                lng:item.lon
+              },
+              label: item.name[0],
+              map:map
+            })
+        });
+      })
+      .fail(function(error) {
+        console.log(error)
+      });
+
+      // var gmarkerPromise = new Promise(function(resolve, reject){
+      //   // going 
+      //   resolve();
+
+      //   // error 
+      //   reject();
+      // });
+
+      // gmarkers
+      // .then(function() {
+      //   //
+      //   throw new Error();
+      //   return;
+      // })
+      // .then(function() {
+
+      // })
+      // .catch(function(error) {
+
+      // })
+
+      
+      var map;
+
       function initMap() {
-        var uluru = {lat: 37.47, lng: -122.25};
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 12,
+        var uluru = {lat: 37.7749, lng: -122.4194};
+        map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 13,
           center: uluru
         });
-        var marker = new google.maps.Marker({
-          position: uluru,
-          map: map
-        });
 
-        var marker2 = new google.maps.Marker({
+        // var marker = new google.maps.Marker({
+        //   position: uluru,
+        //   map: map
+        // });
 
-        });
+        // var marker2 = new google.maps.Marker({
+
+        // });
       }
     </script>
     <script async defer
