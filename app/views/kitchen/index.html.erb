@@ -6,7 +6,7 @@
 
     <table id='indexTable2' cellspacing="0" cellpadding="0">
       <thead>
-        <tr>
+        <tr class="headers">
           <th></th>
           <th>Name</th>
           <th>Location</th>
@@ -18,8 +18,9 @@
         <% count = 0 %>
         <% @kitchens.each do |kitchen| %>
           <tr class='kitchenrow indexRow'>
-            <td><%= kitchen.letter %></td>
-            <td><%= kitchen.name %></td>
+            <td><img src='<%= kitchen.symbol %>'></img></td>
+
+            <td>&nbsp;&nbsp;<%= kitchen.name %></td>
             <td><%= kitchen.location %></td>
             <td class='timesOpen center'><%= kitchen.time %></td>
           </tr>
@@ -34,7 +35,7 @@
     </table>
   </div>
   <br>
-    
+
       <div id="map"></div>
       <script>
 
@@ -105,6 +106,14 @@
           type: "get"
         })
         .done(function(response){
+          var currentLocation = new google.maps.Marker({
+            position:{
+              lat: 37.784517,
+              lng: -122.397194
+            },
+            icon: 'http://i.imgur.com/naRwq2I.png',
+            map: map
+          });
           console.log(response)
           response.forEach(function(item) {
             var mark = new google.maps.Marker(
