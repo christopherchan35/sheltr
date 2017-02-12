@@ -1,5 +1,11 @@
 <%= link_to 'To Kitchens', kitchen_index_path %>
 
+<script>
+  $('#change-beds').on('click', function(e){
+
+  })
+</script>
+
 <h1>Shelters</h1>
 
 <table id='indexTable' cellspacing="0" cellpadding="0">
@@ -101,6 +107,15 @@
         type: "get"
       })
       .done(function(response){
+        var currentLocation = new google.maps.Marker({
+          position:{
+            lat: 37.784517,
+            lng: -122.397194
+          },
+          icon: 'http://i.imgur.com/NhmjHJj.png',
+          map: map
+        });
+
         response.forEach(function(item) {
           var mark = new google.maps.Marker(
             {
@@ -109,7 +124,7 @@
                 lng:item.lon
               },
               label: item.letter,
-              map:map
+              map:map,
             })
         });
       })
