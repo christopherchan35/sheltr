@@ -3,6 +3,7 @@
 <table id='indexTable'>
   <thead>
     <tr>
+      <th>Symbol</th>
       <th>Sheltername</th>
       <th>Location</th>
       <th>Total Beds</th>
@@ -13,6 +14,7 @@
   <tbody>
     <% @shelters.each do |shelter| %>
       <tr class='shelterrow'>
+        <td><%= shelter.letter %></td>
         <td><%= shelter.name %></td>
         <td><%= shelter.location %></td>
         <td class='totalBeds center'><%= shelter.total_beds %></td>
@@ -39,7 +41,7 @@
                 lat:item.lat,
                 lng:item.lon
               },
-              label: item.name[0],
+              label: item.letter,
               map:map
             })
         });
@@ -73,9 +75,9 @@
       var map;
 
       function initMap() {
-        var uluru = {lat: 37.7749, lng: -122.4194};
+        var uluru = {lat: 37.784517, lng: -122.405};
         map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 13,
+          zoom: 15,
           center: uluru
         });
 
