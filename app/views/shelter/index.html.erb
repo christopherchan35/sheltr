@@ -43,44 +43,56 @@
 
 <script>
 
-var pubnub = new PubNub({
-    subscribeKey: <%= ENV['PUBNUB_SUB'] %>
-});
+var subKey;
 
-
-pubnub.addListener({
-    message: function(message) {
-      var td = $('#' + message.message.name)
-        td.html(message.message.value)
-        td.addClass('tdAnimateClass')
-        setTimeout(function(){
-          td.removeClass('tdAnimateClass')
-        }, 3000)
-        styleRows()
-    }
+var request = $.ajax({
+  url: '/subKey',
+  type: 'get'
 })
+request.done(function(r){
 
-var styleRows = function() {
-  var rows = $('.shelterrow')
-  for (var i = 0; i < rows.length; i++){
-    var total = $(rows[i]).children('.totalBeds')[0]
-    total = $(total).text()
-    var avail = $(rows[i]).children('.open_beds')[0]
-    avail = $(avail).text()
-    if (+avail >= 10){
-      $(rows[i]).css('color', 'green')
-    } else {
-      $(rows[i]).css('color', 'red')
+})
+request.fail(function(r){
+   subKey = r.responseText
+
+  var pubnub = new PubNub({
+      subscribeKey: subKey
+  });
+
+  pubnub.addListener({
+      message: function(message) {
+        var td = $('#' + message.message.name)
+          td.html(message.message.value)
+          td.addClass('tdAnimateClass')
+          setTimeout(function(){
+            td.removeClass('tdAnimateClass')
+          }, 3000)
+          styleRows()
+      }
+  })
+
+  var styleRows = function() {
+    var rows = $('.shelterrow')
+    for (var i = 0; i < rows.length; i++){
+      var total = $(rows[i]).children('.totalBeds')[0]
+      total = $(total).text()
+      var avail = $(rows[i]).children('.open_beds')[0]
+      avail = $(avail).text()
+      if (+avail >= 10){
+        $(rows[i]).css('color', 'green')
+      } else {
+        $(rows[i]).css('color', 'red')
+      }
     }
   }
-}
 
-styleRows()
+  styleRows()
 
-pubnub.subscribe({
-    channels: ['tic-tac-toe']
-});
+  pubnub.subscribe({
+      channels: ['tic-tac-toe']
+  });
+
+})
 
 </script>
-
 

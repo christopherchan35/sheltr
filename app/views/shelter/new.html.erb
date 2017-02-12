@@ -29,9 +29,29 @@
 
 <script>
 
+var subKey;
+var pubKey;
+
+var request = $.ajax({
+  url: '/subKey',
+  type: 'get'
+})
+request.done(function(r){
+
+})
+request.fail(function(r){
+  subKey = r.responseText
+  var secrequest = $.ajax({
+    url: '/pubKey',
+    type: 'get'
+  })
+  secrequest.fail(function(sr){
+    pubKey = sr.responseText
+
+
 var pubnub = new PubNub({
-    subscribeKey: 'sub-c-677de3da-efe8-11e6-87db-0619f8945a4f', // always required
-    publishKey: 'pub-c-9a3e8a26-c923-488b-a015-186681fe458b' // only required if publishing
+    subscribeKey: subKey, // always required
+    publishKey: pubKey // only required if publishing
 });
 
 
@@ -58,7 +78,8 @@ for (var i = 0; i < buttons.length; i++){
   })
 }
 
-
+  })
+})
 
 
 
