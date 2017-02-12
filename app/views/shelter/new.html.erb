@@ -48,36 +48,31 @@ request.fail(function(r){
   secrequest.fail(function(sr){
     pubKey = sr.responseText
 
+    var pubnub = new PubNub({
+        subscribeKey: subKey, // always required
+        publishKey: pubKey // only required if publishing
+    });
 
-var pubnub = new PubNub({
-    subscribeKey: subKey, // always required
-    publishKey: pubKey // only required if publishing
-});
 
+    var buttons = $('.shelterrow')
 
-var buttons = $('.shelterrow')
-
-for (var i = 0; i < buttons.length; i++){
-  var form = $(buttons[i])
-  $(form).on('submit', function(e){
-    e.preventDefault()
-    var id = $($(this)).attr('id')
-    var publishVal = $('#' + id + 'input').val()
-
-    pubnub.publish(
-    {
-        message: {
-            name: id,
-            value: publishVal
-        },
-        channel: 'tic-tac-toe'
+    for (var i = 0; i < buttons.length; i++){
+      var form = $(buttons[i])
+      $(form).on('submit', function(e){
+        e.preventDefault()
+        var id = $($(this)).attr('id')
+        var publishVal = $('#' + id + 'input').val()
+        pubnub.publish(
+        {
+            message: {
+                name: id,
+                value: publishVal
+            },
+            channel: 'tic-tac-toe'
+        }
+        );
+      })
     }
-);
-
-
-  })
-}
-
   })
 })
 
