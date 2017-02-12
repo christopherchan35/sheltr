@@ -7,6 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 Shelter.destroy_all
+Kitchen.destroy_all
 
 Shelter.create(
   name: "St Anthony Foundation",
@@ -60,4 +61,53 @@ Shelter.create(
   open_beds: 3,
   lat: 37.788570,
   lon: -122.412011,
+  letter: "F")
+
+
+Kitchen.create(
+  name: "St Anthony Foundation",
+  location: "150 Golden Gate Ave",
+  time: "11:30AM - 1:30PM",
+  lat: 37.782199,
+  lon: -122.413214,
+  letter: "A")
+
+Kitchen.create(
+  name: "Marin Food Bank",
+  location: "900 Pennsylvania Ave",
+  time: "9:00AM - 5:00PM",
+  lat: 37.754435,
+  lon: -122.393517,
+  letter: "B")
+
+Kitchen.create(
+  name: "HandsOn Bay Area",
+  location: "1504 Bryant St",
+  time: "9:00AM - 5:00PM:",
+  lat: 37.767966,
+  lon: -122.411064,
+  letter: "C")
+
+Kitchen.create(
+  name: "Project Open Hand",
+  location: "730 Polk St",
+  time: "11:00AM - 4:00PM",
+  lat: 37.783822,
+  lon: -122.419095,
+  letter: "D")
+
+Kitchen.create(
+  name: "Missionaries of Charity",
+  location: "312 29th St",
+  time: "10:00AM - 3:30PM",
+  lat: 37.743882,
+  lon: -122.427451,
+  letter: "E")
+
+Kitchen.create(
+  name: "Glide",
+  location: "330 Ellis St",
+  time: "9:00AM - 5:00PM",
+  lat: 37.785227,
+  lon: -122.411444,
   letter: "F")

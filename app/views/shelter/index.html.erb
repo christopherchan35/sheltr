@@ -1,3 +1,7 @@
+<% i = 0 %>
+<% while i < 5 %>
+  <%= i %>
+<% end %>
 <h1>Shelters</h1>
 
 <table id='indexTable' cellspacing="0" cellpadding="0">
@@ -50,28 +54,6 @@
         console.log(error)
       });
 
-      // var gmarkerPromise = new Promise(function(resolve, reject){
-      //   // going
-      //   resolve();
-
-      //   // error
-      //   reject();
-      // });
-
-      // gmarkers
-      // .then(function() {
-      //   //
-      //   throw new Error();
-      //   return;
-      // })
-      // .then(function() {
-
-      // })
-      // .catch(function(error) {
-
-      // })
-
-
       var map;
 
       function initMap() {
@@ -80,15 +62,6 @@
           zoom: 15,
           center: uluru
         });
-
-        // var marker = new google.maps.Marker({
-        //   position: uluru,
-        //   map: map
-        // });
-
-        // var marker2 = new google.maps.Marker({
-
-        // });
       }
     </script>
     <script async defer
