@@ -6,4 +6,5 @@ Rails.application.routes.draw do
 
   get 'subKey', :to => 'shelter#subKey'
   get 'pubKey', :to => 'shelter#pubKey'
+  resources :sheltr_test
 end
