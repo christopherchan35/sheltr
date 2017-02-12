@@ -1,8 +1,9 @@
 <h1>Shelters</h1>
 
-<table>
+<table id='indexTable' cellspacing="0" cellpadding="0">
   <thead>
     <tr>
+      <th>Symbol</th>
       <th>Shelter Name</th>
       <th>Location</th>
       <th>Route</th>
@@ -14,15 +15,16 @@
   <tbody>
     <% count = 0 %>
     <% @shelters.each do |shelter| %>
-      <tr class='shelterrow'>
+      <tr class='shelterrow indexRow'>
+        <td><%= shelter.letter %></td>
         <td><%= shelter.name %></td>
         <td><%= shelter.location %></td>
         <td>
           <div id = "directions<%= +count.to_s%>"></div>
           <% count+=1 %>
         </td>
-        <td><%= shelter.total_beds %></td>
-        <td id=<%= "#{shelter.id}" %>><%= shelter.open_beds %></td>
+        <td class='totalBeds center'><%= shelter.total_beds %></td>
+        <td id=<%= "#{shelter.id}" %> class='open_beds center'><%= shelter.open_beds %></td>
       </tr>
     <% end %>
   </tbody>
@@ -36,6 +38,53 @@
     <div id="map5"></div>
     <div id="map6"></div>
     <script>
+
+      $.ajax({
+        url: "/gmarkers",
+        type: "get"
+      })
+      .done(function(response){
+        console.log(response)
+        response.forEach(function(item) {
+          var mark = new google.maps.Marker(
+            {
+              position:{
+                lat:item.lat,
+                lng:item.lon
+              },
+              label: item.letter,
+              map:map
+            })
+        });
+      })
+      .fail(function(error) {
+        console.log(error)
+      });
+
+      // var gmarkerPromise = new Promise(function(resolve, reject){
+      //   // going
+      //   resolve();
+
+      //   // error
+      //   reject();
+      // });
+
+      // gmarkers
+      // .then(function() {
+      //   //
+      //   throw new Error();
+      //   return;
+      // })
+      // .then(function() {
+
+      // })
+      // .catch(function(error) {
+
+      // })
+
+
+      var map;
+
       function initMap() {
         var directionsDisplay = new google.maps.DirectionsRenderer;
         var directionsService = new google.maps.DirectionsService;
@@ -144,32 +193,64 @@
     </script>
 
 <script>
-var pubnub = new PubNub({
-    subscribeKey: "<%= ENV['PUBNUB_SUB'] %>"
-});
 
+var subKey;
 
-pubnub.addListener({
-    message: function(message) {
-      var td = $('#' + message.message.name)
-        td.html(message.message.value)
-        td.css('background', 'red')
+var request = $.ajax({
+  url: '/subKey',
+  type: 'get'
+})
+request.done(function(r){
 
-        setTimeout(function(){
-          td.css('transition', 'background 5s')
-          td.css('background', 'white')
-          setTimeout(function(){
-            td.css('transition', 'none')
-          }, 5000)
-        }, 0)
+})
+request.fail(function(r){
+   subKey = r.responseText
 
+  var pubnub = new PubNub({
+      subscribeKey: subKey
+  });
+
+  pubnub.addListener({
+      message: function(message) {
+        var td = $('#' + message.message.name)
+          td.html(message.message.value)
+          var parent = td.parent()
+          if (message.message.value >= 10){
+            parent.addClass('tdAnimateGreen')
+            setTimeout(function(){
+              parent.removeClass('tdAnimateGreen')
+            }, 3000)
+          } else {
+            parent.addClass('tdAnimateRed')
+            setTimeout(function(){
+              parent.removeClass('tdAnimateRed')
+            }, 3000)
+          }
+          styleRows()
+      }
+  })
+
+  var styleRows = function() {
+    var rows = $('.shelterrow')
+    for (var i = 0; i < rows.length; i++){
+      var total = $(rows[i]).children('.totalBeds')[0]
+      total = $(total).text()
+      var avail = $(rows[i]).children('.open_beds')[0]
+      avail = $(avail).text()
+      if (+avail >= 10){
+        $(rows[i]).css('background', '#62ef77')
+      } else {
+        $(rows[i]).css('background', '#f75d4c')
+      }
     }
+  }
+
+  styleRows()
+
+  pubnub.subscribe({
+      channels: ['tic-tac-toe']
+  });
+
 })
 
-pubnub.subscribe({
-    channels: ['tic-tac-toe']
-});
-
 </script>
-
-

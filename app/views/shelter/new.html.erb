@@ -1,12 +1,22 @@
 <h1>Admin page</h1>
 
-<table>
+<table id='adminTable'>
+  <tr>
+  <th>Shelter</th>
+  <th>Open Beds</th>
+  <th>Update</th>
+  </tr>
   <% @shelters.each do |shelter| %>
     <tr>
       <form id=<%= shelter.id %> class='shelterrow'>
         <td><%= shelter.name %></td>
+        <td class='center'><%= shelter.open_beds %></td>
         <td>
-          <input type='text' id=<%= "#{shelter.id}input" %> value=<%= shelter.open_beds %>
+          <input type='number' id=<%= "#{shelter.id}input" %>
+          class='center'
+         value=<%= shelter.open_beds %>
+          max=<%= shelter.total_beds %>
+          min='0'
         </td>
         <td>
           <input type='submit'>
@@ -18,39 +28,53 @@
 
 
 <script>
-console.log(<%= ENV['PUBNUB_SUB'] %>)
-var pubnub = new PubNub({
 
-    subscribeKey: <%= ENV['PUBNUB_SUB'] %>, // always required
-    publishKey: <%= ENV['PUBNUB_PUB'] %> // only required if publishing
-});
+var subKey;
+var pubKey;
 
+var request = $.ajax({
+  url: '/subKey',
+  type: 'get'
+})
+request.done(function(r){
 
-var buttons = $('.shelterrow')
-
-for (var i = 0; i < buttons.length; i++){
-  var form = $(buttons[i])
-  $(form).on('submit', function(e){
-    e.preventDefault()
-    var id = $($(this)).attr('id')
-    console.log(id)
-    var publishVal = $('#' + id + 'input').val()
-
-    pubnub.publish(
-    {
-        message: {
-            name: id,
-            value: publishVal
-        },
-        channel: 'tic-tac-toe'
-    }
-);
-
-
+})
+request.fail(function(r){
+  subKey = r.responseText
+  var secrequest = $.ajax({
+    url: '/pubKey',
+    type: 'get'
   })
-}
+  secrequest.fail(function(sr){
+    pubKey = sr.responseText
+
+    var pubnub = new PubNub({
+        subscribeKey: subKey, // always required
+        publishKey: pubKey // only required if publishing
+    });
 
 
+    var buttons = $('.shelterrow')
+
+    for (var i = 0; i < buttons.length; i++){
+      var form = $(buttons[i])
+      $(form).on('submit', function(e){
+        e.preventDefault()
+        var id = $($(this)).attr('id')
+        var publishVal = $('#' + id + 'input').val()
+        pubnub.publish(
+        {
+            message: {
+                name: id,
+                value: publishVal
+            },
+            channel: 'tic-tac-toe'
+        }
+        );
+      })
+    }
+  })
+})
 
 
 

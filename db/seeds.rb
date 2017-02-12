@@ -12,34 +12,52 @@ Shelter.create(
   name: "St Anthony Foundation",
   location: "150 Golden Gate Ave",
   total_beds: 50,
-  open_beds: 20)
+  open_beds: 20,
+  lat: 37.782199,
+  lon: -122.413214,
+  letter: "A")
 
 Shelter.create(
   name: "One Brick",
   location: "237 Kearny St",
   total_beds: 30,
-  open_beds: 10)
+  open_beds: 10,
+  lat: 37.790323,
+  lon: -122.404214,
+  letter: "B")
 
 Shelter.create(
   name: "St Vincent de Paul Society",
   location: "525 5th St",
   total_beds: 40,
-  open_beds: 15)
+  open_beds: 15,
+  lat: 37.777730,
+  lon: -122.399833,
+  letter: "C")
 
 Shelter.create(
   name: "Episcopal Community Services",
   location: "165 8th St",
   total_beds: 20,
-  open_beds: 10)
+  open_beds: 10,
+  lat: 37.776814,
+  lon: -122.412128,
+  letter: "D")
 
 Shelter.create(
   name: "Tenderloin Housing Clinic",
   location: "126 Hyde St",
   total_beds: 35,
-  open_beds: 5)
+  open_beds: 5,
+  lat: 37.782111,
+  lon: -122.415391,
+  letter: "E")
 
 Shelter.create(
   name: "Larkin Street Services",
   location: "701 Sutter St",
   total_beds: 15,
-  open_beds: 3)
+  open_beds: 3,
+  lat: 37.788570,
+  lon: -122.412011,
+  letter: "F")
