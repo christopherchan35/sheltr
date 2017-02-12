@@ -34,6 +34,8 @@ ActiveRecord::Schema.define(version: 20170212062440) do
     t.float    "lat"
     t.float    "lon"
     t.string   "letter"
+    t.string   "red"
+    t.string   "green"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

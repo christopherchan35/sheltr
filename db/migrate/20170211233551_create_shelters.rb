@@ -8,6 +8,8 @@ class CreateShelters < ActiveRecord::Migration[5.0]
       t.float :lat
       t.float :lon
       t.string :letter
+      t.string :red
+      t.string :green
 
       t.timestamps
     end

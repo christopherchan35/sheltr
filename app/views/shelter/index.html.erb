@@ -1,5 +1,11 @@
 <%= link_to 'To Kitchens', kitchen_index_path %>
 
+<script>
+  $('#change-beds').on('click', function(e){
+
+  })
+</script>
+
 <h1>Shelters</h1>
 
 <table id='indexTable' cellspacing="0" cellpadding="0">
@@ -17,7 +23,7 @@
   <tbody>
     <% count = 0 %>
     <% @shelters.each do |shelter| %>
-      <tr class='shelterrow indexRow'>
+      <tr class='shelterrow indexRow' id=<%= "row#{shelter.id}" %>>
         <td><%= shelter.letter %></td>
         <td><%= shelter.name %></td>
         <td><%= shelter.location %></td>
@@ -101,15 +107,34 @@
         type: "get"
       })
       .done(function(response){
+        var currentLocation = new google.maps.Marker({
+          position:{
+            lat: 37.784517,
+            lng: -122.397194
+          },
+          icon: 'http://i.stack.imgur.com/orZ4x.png',
+          map: map
+        });
+
         response.forEach(function(item) {
+          var row = document.getElementById('row' + item.id)
+          var total = $(row).children('.totalBeds').text()
+          var open = $(row).children('.open_beds').text()
+          var pin;
+          if (+open >= 10) {
+            pin = item.green
+          } else {
+            pin = item.red
+          }
           var mark = new google.maps.Marker(
             {
               position:{
                 lat:item.lat,
                 lng:item.lon
               },
-              label: item.letter,
-              map:map
+              // label: item.letter,
+              icon: pin,
+              map:map,
             })
         });
       })
@@ -119,8 +144,6 @@
       }
 
       function calculateAndDisplayRoute(directionsService, directionsDisplay, end, div) {
-        console.log(div);
-        console.log(end)
         directionsDisplay.setPanel(document.getElementById(div));
 
         var start = "2ndSt&FolsomSt";
@@ -131,6 +154,25 @@
           travelMode: 'TRANSIT'
         }, function(response, status) {
           if (status === 'OK') {
+            directionsDisplay.setDirections(response);
+          } else {
+            window.alert('Directions request failed due to ' + status);
+          }
+        });
+      }
+
+      function calculateAndDisplayRoute2(directionsService, directionsDisplay, end, div) {
+        directionsDisplay.setPanel(document.getElementById(div));
+
+        var start = "2ndSt&FolsomSt";
+
+        directionsService.route({
+          origin: start,
+          destination: end,
+          travelMode: 'TRANSIT'
+        }, function(response, status) {
+          if (status === 'OK') {
+            // console.log(response);
             directionsDisplay.setDirections(response);
           } else {
             window.alert('Directions request failed due to ' + status);
@@ -163,6 +205,7 @@ request.fail(function(r){
 
   pubnub.addListener({
       message: function(message) {
+        addMarker(message)
         var td = $('#' + message.message.name)
           td.html(message.message.value)
           var parent = td.parent()
@@ -180,6 +223,33 @@ request.fail(function(r){
           styleRows()
       }
   })
+
+  addMarker = function(message){
+    console.log(message)
+    var map = document.getElementById('map')
+    console.log(map)
+    var item = (+message.message.name - 1)
+    var row = document.getElementById('row' + item)
+    var total = $(row).children('.totalBeds').text()
+    var open = $(row).children('.open_beds').text()
+    var pin;
+    if (+open >= 10) {
+      pin = item.green
+    } else {
+      pin = item.red
+    }
+    var mark = new google.maps.Marker(
+      {
+        position:{
+          lat:item.lat,
+          lng:item.lon
+        },
+        // label: item.letter,
+        icon: pin,
+        map:map,
+      })
+
+  }
 
   var styleRows = function() {
     var rows = $('.shelterrow')
