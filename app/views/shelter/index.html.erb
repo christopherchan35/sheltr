@@ -34,16 +34,10 @@ pubnub.addListener({
     message: function(message) {
       var td = $('#' + message.message.name)
         td.html(message.message.value)
-        td.css('background', 'red')
-
+        td.addClass('tdAnimateClass')
         setTimeout(function(){
-          td.css('transition', 'background 5s')
-          td.css('background', 'white')
-          setTimeout(function(){
-            td.css('transition', 'none')
-          }, 5000)
-        }, 0)
-
+          td.removeClass('tdAnimateClass')
+        }, 3000)
     }
 })
 
