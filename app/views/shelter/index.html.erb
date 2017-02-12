@@ -1,72 +1,167 @@
-<button id='to-kitchen'>Switch</button>
+<h1>Shelters</h1>
 
-<div id='shelter-container'>
-  <h1>Shelters</h1>
+<table id='indexTable' cellspacing="0" cellpadding="0">
+  <thead>
+    <tr>
+      <th>Symbol</th>
+      <th>Shelter Name</th>
+      <th>Location</th>
+      <th>Route</th>
+      <th>Total Beds</th>
+      <th>Open Beds</th>
+    </tr>
+  </thead>
 
-  <table id='indexTable' cellspacing="0" cellpadding="0">
-    <thead>
-      <tr>
-        <th>Symbol</th>
-        <th>Name</th>
-        <th>Location</th>
-        <th>Total Beds</th>
-        <th>Open Beds</th>
+  <tbody>
+    <% count = 0 %>
+    <% @shelters.each do |shelter| %>
+      <tr class='shelterrow indexRow'>
+        <td><%= shelter.letter %></td>
+        <td><%= shelter.name %></td>
+        <td><%= shelter.location %></td>
+        <td>
+          <div id = "directions<%= +count.to_s%>"></div>
+          <% count+=1 %>
+        </td>
+        <td class='totalBeds center'><%= shelter.total_beds %></td>
+        <td id=<%= "#{shelter.id}" %> class='open_beds center'><%= shelter.open_beds %></td>
       </tr>
-    </thead>
+    <% end %>
+  </tbody>
+</table>
 
-    <tbody>
-      <% @shelters.each do |shelter| %>
-        <tr class='shelterrow indexRow'>
-          <td><%= shelter.letter %></td>
-          <td><%= shelter.name %></td>
-          <td><%= shelter.location %></td>
-          <td class='totalBeds center'><%= shelter.total_beds %></td>
-          <td id=<%= "#{shelter.id}" %> class='open_beds center'><%= shelter.open_beds %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+<br>
+    <div id="map"></div>
+    <script>
 
-  <br>
-      <div id="map"></div>
-      <script>
+      var map;
 
-        $.ajax({
-          url: "/gmarkers",
-          type: "get"
-        })
-        .done(function(response){
-          console.log(response)
-          response.forEach(function(item) {
-            var mark = new google.maps.Marker(
-              {
-                position:{
-                  lat:item.lat,
-                  lng:item.lon
-                },
-                label: item.letter,
-                map:map
-              })
-          });
-        })
-        .fail(function(error) {
-          console.log(error)
+      function initMap() {
+        var directionsDisplay = new google.maps.DirectionsRenderer;
+        var directionsService = new google.maps.DirectionsService;
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 15,
+          center: {lat: 37.78784517, lng: -122.405}
         });
+        calculateAndDisplayRoute(directionsService, directionsDisplay, "150GoldenGateAve", 'directions0');
+        initMap2();
+      }
+      function initMap2() {
+        var directionsDisplay = new google.maps.DirectionsRenderer;
+        var directionsService = new google.maps.DirectionsService;
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 12,
+          center: {lat: 37.78784517, lng: -122.405}
+        });
+        calculateAndDisplayRoute(directionsService, directionsDisplay, "237KearnySt", 'directions1');
+        initMap3();
+      }
+      function initMap3() {
+        var directionsDisplay = new google.maps.DirectionsRenderer;
+        var directionsService = new google.maps.DirectionsService;
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 12,
+          center: {lat: 37.78784517, lng: -122.405}
+        });
+        calculateAndDisplayRoute(directionsService, directionsDisplay, "525FifththSt", 'directions2');
+        initMap4();
+      }
+      function initMap4() {
+        var directionsDisplay = new google.maps.DirectionsRenderer;
+        var directionsService = new google.maps.DirectionsService;
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 12,
+          center: {lat: 37.78784517, lng: -122.405}
+        });
+        calculateAndDisplayRoute(directionsService, directionsDisplay, "165EighththSt", 'directions3');
+        initMap5();
+      }
+      function initMap5() {
+        var directionsDisplay = new google.maps.DirectionsRenderer;
+        var directionsService = new google.maps.DirectionsService;
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 12,
+          center: {lat: 37.78784517, lng: -122.405}
+        });
+        calculateAndDisplayRoute(directionsService, directionsDisplay, "126HydeSt", 'directions4');
+        initMap6();
+      }
+      function initMap6() {
+        var directionsDisplay = new google.maps.DirectionsRenderer;
+        var directionsService = new google.maps.DirectionsService;
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 15,
+          center: {lat: 37.78784517, lng: -122.405}
+        });
+        calculateAndDisplayRoute(directionsService, directionsDisplay, "701SutterSt", 'directions5');
+              $.ajax({
+        url: "/gmarkers",
+        type: "get"
+      })
+      .done(function(response){
+        response.forEach(function(item) {
+          var mark = new google.maps.Marker(
+            {
+              position:{
+                lat:item.lat,
+                lng:item.lon
+              },
+              label: item.letter,
+              map:map
+            })
+        });
+      })
+      .fail(function(error) {
+        console.log(error)
+      });
+      }
 
-        var map;
+      function calculateAndDisplayRoute(directionsService, directionsDisplay, end, div) {
+        console.log(div);
+        console.log(end)
+        directionsDisplay.setPanel(document.getElementById(div));
 
-        function initMap() {
-          var uluru = {lat: 37.784517, lng: -122.405};
-          map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 15,
-            center: uluru
-          });
-        }
-      </script>
-      <script async defer
-      src="https://maps.googleapis.com/maps/api/js?key=<%=ENV['GOOGLE_MAPS']%>&callback=initMap">
-      </script>
-</div>
+        var start = "2ndSt&FolsomSt";
+
+        directionsService.route({
+          origin: start,
+          destination: end,
+          travelMode: 'TRANSIT'
+        }, function(response, status) {
+          if (status === 'OK') {
+            directionsDisplay.setDirections(response);
+          } else {
+            window.alert('Directions request failed due to ' + status);
+          }
+        });
+      }
+
+      function calculateAndDisplayRoute2(directionsService, directionsDisplay, end, div) {
+        console.log(div);
+        console.log(end)
+        directionsDisplay.setPanel(document.getElementById(div));
+
+        var start = "2ndSt&FolsomSt";
+
+        directionsService.route({
+          origin: start,
+          destination: end,
+          travelMode: 'TRANSIT'
+        }, function(response, status) {
+          if (status === 'OK') {
+            // console.log(response);
+            directionsDisplay.setDirections(response);
+          } else {
+            window.alert('Directions request failed due to ' + status);
+          }
+        });
+      }
+
+
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=<%=ENV['GOOGLE_MAPS']%>&callback=initMap">
+    </script>
 
 <script>
 
