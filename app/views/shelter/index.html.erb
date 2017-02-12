@@ -1,6 +1,6 @@
 <h1>Shelters</h1>
 
-<table>
+<table id='indexTable'>
   <thead>
     <tr>
       <th>Sheltername</th>
@@ -15,8 +15,8 @@
       <tr class='shelterrow'>
         <td><%= shelter.name %></td>
         <td><%= shelter.location %></td>
-        <td class='totalBeds'><%= shelter.total_beds %></td>
-        <td id=<%= "#{shelter.id}" %> class='open_beds'><%= shelter.open_beds %></td>
+        <td class='totalBeds center'><%= shelter.total_beds %></td>
+        <td id=<%= "#{shelter.id}" %> class='open_beds center'><%= shelter.open_beds %></td>
       </tr>
     <% end %>
   </tbody>

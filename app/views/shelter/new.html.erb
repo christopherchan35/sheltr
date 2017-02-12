@@ -1,18 +1,20 @@
 <h1>Admin page</h1>
 
-<table>
+<table id='adminTable'>
   <tr>
   <th>Shelter</th>
-  <th>Beds Available</th>
-  <th>Update Beds</th>
+  <th>Open Beds</th>
+  <th>Update</th>
   </tr>
   <% @shelters.each do |shelter| %>
     <tr>
       <form id=<%= shelter.id %> class='shelterrow'>
         <td><%= shelter.name %></td>
-        <td><%= shelter.open_beds %></td>
+        <td class='center'><%= shelter.open_beds %></td>
         <td>
-          <input type='number' id=<%= "#{shelter.id}input" %> value=<%= shelter.open_beds %>
+          <input type='number' id=<%= "#{shelter.id}input" %>
+          class='center'
+         value=<%= shelter.open_beds %>
           max=<%= shelter.total_beds %>
           min='0'
         </td>
