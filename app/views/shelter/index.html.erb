@@ -1,72 +1,144 @@
-<% i = 0 %>
-<% while i < 5 %>
-  <%= i %>
-<% end %>
-<h1>Shelters</h1>
+<button>Switch</button>
+<script>
+  $('button').on('click', function(e) {
+    e.preventDefault();
+  })
 
-<table id='indexTable' cellspacing="0" cellpadding="0">
-  <thead>
-    <tr>
-      <th>Symbol</th>
-      <th>Sheltername</th>
-      <th>Location</th>
-      <th>Total Beds</th>
-      <th>Open Beds</th>
-    </tr>
-  </thead>
+</script>
 
-  <tbody>
-    <% @shelters.each do |shelter| %>
-      <tr class='shelterrow indexRow'>
-        <td><%= shelter.letter %></td>
-        <td><%= shelter.name %></td>
-        <td><%= shelter.location %></td>
-        <td class='totalBeds center'><%= shelter.total_beds %></td>
-        <td id=<%= "#{shelter.id}" %> class='open_beds center'><%= shelter.open_beds %></td>
+<div id='kitchen-container'>
+  <h1>Kitchens</h1>
+
+  <table id='indexTable2' cellspacing="0" cellpadding="0">
+    <thead>
+      <tr>
+        <th>Symbol</th>
+        <th>Name</th>
+        <th>Location</th>
+        <th>Times Open</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
-    <div id="map"></div>
-    <script>
+    <tbody>
+      <% @kitchens.each do |kitchen| %>
+        <tr class='kitchenrow indexRow'>
+          <td><%= kitchen.letter %></td>
+          <td><%= kitchen.name %></td>
+          <td><%= kitchen.location %></td>
+          <td class='timesOpen center'><%= kitchen.time %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-      $.ajax({
-        url: "/gmarkers",
-        type: "get"
-      })
-      .done(function(response){
-        console.log(response)
-        response.forEach(function(item) {
-          var mark = new google.maps.Marker(
-            {
-              position:{
-                lat:item.lat,
-                lng:item.lon
-              },
-              label: item.letter,
-              map:map
-            })
+  <br>
+      <div id="map"></div>
+      <script>
+
+        $.ajax({
+          url: "/gmarkers",
+          type: "get"
+        })
+        .done(function(response){
+          console.log(response)
+          response.forEach(function(item) {
+            var mark = new google.maps.Marker(
+              {
+                position:{
+                  lat:item.lat,
+                  lng:item.lon
+                },
+                label: item.letter,
+                map:map
+              })
+          });
+        })
+        .fail(function(error) {
+          console.log(error)
         });
-      })
-      .fail(function(error) {
-        console.log(error)
-      });
 
-      var map;
+        var map;
 
-      function initMap() {
-        var uluru = {lat: 37.784517, lng: -122.405};
-        map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 15,
-          center: uluru
+        function initMap() {
+          var uluru = {lat: 37.784517, lng: -122.405};
+          map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 15,
+            center: uluru
+          });
+        }
+      </script>
+      <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=<%=ENV['GOOGLE_MAPS']%>&callback=initMap">
+      </script>
+</div>
+
+<div id='shelter-container'>
+  <h1>Shelters</h1>
+
+  <table id='indexTable' cellspacing="0" cellpadding="0">
+    <thead>
+      <tr>
+        <th>Symbol</th>
+        <th>Name</th>
+        <th>Location</th>
+        <th>Total Beds</th>
+        <th>Open Beds</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @shelters.each do |shelter| %>
+        <tr class='shelterrow indexRow'>
+          <td><%= shelter.letter %></td>
+          <td><%= shelter.name %></td>
+          <td><%= shelter.location %></td>
+          <td class='totalBeds center'><%= shelter.total_beds %></td>
+          <td id=<%= "#{shelter.id}" %> class='open_beds center'><%= shelter.open_beds %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <br>
+      <div id="map"></div>
+      <script>
+
+        $.ajax({
+          url: "/gmarkers",
+          type: "get"
+        })
+        .done(function(response){
+          console.log(response)
+          response.forEach(function(item) {
+            var mark = new google.maps.Marker(
+              {
+                position:{
+                  lat:item.lat,
+                  lng:item.lon
+                },
+                label: item.letter,
+                map:map
+              })
+          });
+        })
+        .fail(function(error) {
+          console.log(error)
         });
-      }
-    </script>
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=<%=ENV['GOOGLE_MAPS']%>&callback=initMap">
-    </script>
+
+        var map;
+
+        function initMap() {
+          var uluru = {lat: 37.784517, lng: -122.405};
+          map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 15,
+            center: uluru
+          });
+        }
+      </script>
+      <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=<%=ENV['GOOGLE_MAPS']%>&callback=initMap">
+      </script>
+</div>
 
 <script>
 

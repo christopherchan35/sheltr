@@ -1,6 +1,7 @@
 class ShelterController < ApplicationController
   def index
     @shelters = Shelter.all
+    @kitchens = Kitchen.all
   end
 
   def new
