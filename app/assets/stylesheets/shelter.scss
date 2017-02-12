@@ -4,7 +4,9 @@
 .tdAnimateGreen {
   animation: yellowtogreen 3s forwards linear;
 }
-
+.title{
+  text-align: center;
+}
 @keyframes yellowtogreen{
   0% {
     background: yellow;
@@ -41,7 +43,6 @@ table {
   tr td:last-child { border-bottom-right-radius: 20px; }
 
   td, th {
-    padding: 5px;
     text-align: left;
     font-size: 18px;
   }
@@ -59,3 +60,10 @@ table {
 .kitchenrow{
   background: skyBlue;
 }
+.info{
+  position: absolute;
+  left: 1%;
+  float: left;
+  width: 48%;
+}
+
