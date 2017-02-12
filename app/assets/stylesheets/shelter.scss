@@ -7,7 +7,9 @@
 .title{
   margin: 0px;
   text-align: center;
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
 }
+
 @keyframes yellowtogreen{
   0% {
     background: yellow;
@@ -31,6 +33,7 @@
 }
 
 .indexRow {
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
   color: black;
   border: 5px solid black;
   border-radius: 20px;
