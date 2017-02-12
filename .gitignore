@@ -17,4 +17,5 @@
 .byebug_history
 
 # Ignore env files
+.ENV
 .env
