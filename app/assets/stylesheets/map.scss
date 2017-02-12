@@ -2,3 +2,24 @@
   width: 85%;
   height: 65vh;
 }
+.adp-details{
+  display: none;
+}
+.adp-warnbox{
+  display: none;
+}
+.adp-placemark{
+  display: none;
+}
+.adp-summary{
+  display: none;
+}
+.adp-agencies{
+  display: none;
+}
+.adp-legal{
+  display: none;
+}
+.adp-substep div:last-child, .adp-substep div:nth-last-child(2) {
+  display: none;
+}
