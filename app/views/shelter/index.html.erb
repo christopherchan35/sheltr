@@ -1,1 +1,56 @@
-hi
+<h1>Shelters</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Sheltername</th>
+      <th>Location</th>
+      <th>Total Beds</th>
+      <th>Open Beds</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @shelters.each do |shelter| %>
+      <tr class='shelterrow'>
+        <td><%= shelter.name %></td>
+        <td><%= shelter.location %></td>
+        <td><%= shelter.total_beds %></td>
+        <td id=<%= "#{shelter.id}" %>><%= shelter.open_beds %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<script>
+var pubnub = new PubNub({
+    subscribeKey: 'sub-c-677de3da-efe8-11e6-87db-0619f8945a4f'
+});
+
+
+pubnub.addListener({
+    message: function(message) {
+      var td = $('#' + message.message.name)
+        td.html(message.message.value)
+        td.css('background', 'red')
+
+        setTimeout(function(){
+          td.css('transition', 'background 5s')
+          td.css('background', 'white')
+          setTimeout(function(){
+            td.css('transition', 'none')
+          }, 5000)
+        }, 0)
+
+    }
+})
+
+pubnub.subscribe({
+    channels: ['tic-tac-toe']
+});
+
+</script>
+
+
