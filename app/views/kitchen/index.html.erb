@@ -106,6 +106,14 @@
           type: "get"
         })
         .done(function(response){
+          var currentLocation = new google.maps.Marker({
+            position:{
+              lat: 37.784517,
+              lng: -122.397194
+            },
+            icon: 'http://i.imgur.com/naRwq2I.png',
+            map: map
+          });
           console.log(response)
           response.forEach(function(item) {
             var mark = new google.maps.Marker(
