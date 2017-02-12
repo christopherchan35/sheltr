@@ -25,4 +25,11 @@ class ShelterController < ApplicationController
     end
   end
 
+  def gmarkers
+    @gmarkers = Shelter.all
+    if request.xhr?
+      render :json => @gmarkers
+    end
+  end
+
 end
