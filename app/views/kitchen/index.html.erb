@@ -1,36 +1,38 @@
 <%= link_to 'To Shelters', shelter_index_path %>
 
 <div id='kitchen-container'>
-  <h1>Kitchens</h1>
+  <div class="info">
+    <h1 class="title">Kitchens</h1>
 
-  <table id='indexTable2' cellspacing="0" cellpadding="0">
-    <thead>
-      <tr>
-        <th>Symbol</th>
-        <th>Name</th>
-        <th>Location</th>
-        <th>Route</th>
-        <th>Times Open</th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% count = 0 %>
-      <% @kitchens.each do |kitchen| %>
-        <tr class='kitchenrow indexRow'>
-          <td><%= kitchen.letter %></td>
-          <td><%= kitchen.name %></td>
-          <td><%= kitchen.location %></td>
-          <td>
-            <div id = "directions<%= +count.to_s%>"></div>
-            <% count+=1 %>
-          </td>
-          <td class='timesOpen center'><%= kitchen.time %></td>
+    <table id='indexTable2' cellspacing="0" cellpadding="0">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Name</th>
+          <th>Location</th>
+          <th>Times Open</th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
 
+      <tbody>
+        <% count = 0 %>
+        <% @kitchens.each do |kitchen| %>
+          <tr class='kitchenrow indexRow'>
+            <td><%= kitchen.letter %></td>
+            <td><%= kitchen.name %></td>
+            <td><%= kitchen.location %></td>
+            <td class='timesOpen center'><%= kitchen.time %></td>
+          </tr>
+          <tr>
+            <td class="atob" colspan="4">
+              <div id = "directions<%= +count.to_s%>"></div>
+              <% count+=1 %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
   <br>
       <div id="map"></div>
       <script>
@@ -45,7 +47,8 @@
             zoom: 13,
             center: uluru
           });
-                  calculateAndDisplayRoute(directionsService, directionsDisplay, "150GoldenGateAve", 'directions0');
+          calculateAndDisplayRoute(directionsService, directionsDisplay, "150GoldenGateAve", 'directions0');
+
         initMap2();
       }
       function initMap2() {

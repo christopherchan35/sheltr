@@ -1,6 +1,13 @@
 #map{
-  width: 85%;
-  height: 65vh;
+  position: fixed;
+  top: 5vh;
+  float: right;
+  width: 48%;
+  height: 90vh;
+}
+
+.adp-substep{
+  font-size: 12px;
 }
 .adp-details{
   display: none;
@@ -23,6 +30,4 @@
 .adp-substep div:last-child, .adp-substep div:nth-last-child(2) {
   display: none;
 }
-#indexTable tr{
-  border-radius: 20px;
-}
+
