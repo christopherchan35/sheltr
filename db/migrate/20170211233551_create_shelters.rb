@@ -7,6 +7,7 @@ class CreateShelters < ActiveRecord::Migration[5.0]
       t.integer :open_beds
       t.float :lat
       t.float :lon
+      t.string :letter
 
       t.timestamps
     end
