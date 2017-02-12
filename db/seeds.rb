@@ -88,7 +88,8 @@ Kitchen.create(
   time: "11:30AM - 1:30PM",
   lat: 37.782199,
   lon: -122.413214,
-  letter: "A")
+  letter: "A",
+  symbol: 'http://i.imgur.com/nyoB4Cf.png')
 
 Kitchen.create(
   name: "Marin Food Bank",
@@ -96,15 +97,17 @@ Kitchen.create(
   time: "9:00AM - 5:00PM",
   lat: 37.754435,
   lon: -122.393517,
-  letter: "B")
+  letter: "B",
+  symbol: 'http://i.imgur.com/EvSLwVD.png')
 
 Kitchen.create(
   name: "HandsOn Bay Area",
   location: "1504 Bryant St",
-  time: "9:00AM - 5:00PM:",
+  time: "9:00AM - 5:00PM",
   lat: 37.767966,
   lon: -122.411064,
-  letter: "C")
+  letter: "C",
+  symbol: 'http://i.imgur.com/ctxbBU0.png')
 
 Kitchen.create(
   name: "Project Open Hand",
@@ -112,7 +115,8 @@ Kitchen.create(
   time: "11:00AM - 4:00PM",
   lat: 37.783822,
   lon: -122.419095,
-  letter: "D")
+  letter: "D",
+  symbol: 'http://i.imgur.com/IEgzBPR.png')
 
 Kitchen.create(
   name: "Missionaries of Charity",
@@ -120,7 +124,8 @@ Kitchen.create(
   time: "10:00AM - 3:30PM",
   lat: 37.743882,
   lon: -122.427451,
-  letter: "E")
+  letter: "E",
+  symbol: 'http://i.imgur.com/pcjEVMk.png')
 
 Kitchen.create(
   name: "Glide",
@@ -128,4 +133,5 @@ Kitchen.create(
   time: "9:00AM - 5:00PM",
   lat: 37.785227,
   lon: -122.411444,
-  letter: "F")
+  letter: "F",
+  symbol: 'http://i.imgur.com/EfROrkN.png')

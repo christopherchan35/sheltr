@@ -18,8 +18,9 @@
         <% count = 0 %>
         <% @kitchens.each do |kitchen| %>
           <tr class='kitchenrow indexRow'>
-            <td><%= kitchen.letter %></td>
-            <td><%= kitchen.name %></td>
+            <td><img src='<%= kitchen.symbol %>'></img></td>
+
+            <td>&nbsp;&nbsp;<%= kitchen.name %></td>
             <td><%= kitchen.location %></td>
             <td class='timesOpen center'><%= kitchen.time %></td>
           </tr>
@@ -34,7 +35,7 @@
     </table>
   </div>
   <br>
-    
+
       <div id="map"></div>
       <script>
 
