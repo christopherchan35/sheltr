@@ -18,10 +18,11 @@
 
 
 <script>
-
+console.log(<%= ENV['PUBNUB_SUB'] %>)
 var pubnub = new PubNub({
-    subscribeKey: 'sub-c-677de3da-efe8-11e6-87db-0619f8945a4f', // always required
-    publishKey: 'pub-c-9a3e8a26-c923-488b-a015-186681fe458b' // only required if publishing
+
+    subscribeKey: <%= ENV['PUBNUB_SUB'] %>, // always required
+    publishKey: <%= ENV['PUBNUB_PUB'] %> // only required if publishing
 });
 
 

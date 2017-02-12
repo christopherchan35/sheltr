@@ -2,3 +2,39 @@
   width: 90%;
   height: 400px;
 }
+#map2{
+ display: none;
+}
+#map3{
+ display: none;
+}
+#map4{
+ display: none;
+}
+#map5{
+ display: none;
+}
+#map6{
+ display: none;
+}
+.adp-details{
+  display: none;
+}
+.adp-warnbox{
+  display: none;
+}
+.adp-placemark{
+  display: none;
+}
+.adp-summary{
+  display: none;
+}
+.adp-agencies{
+  display: none;
+}
+.adp-legal{
+  display: none;
+}
+.adp-substep div:last-child, .adp-substep div:nth-last-child(2) {
+  display: none;
+}
