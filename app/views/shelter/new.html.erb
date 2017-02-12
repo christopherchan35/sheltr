@@ -1,10 +1,16 @@
 <h1>Admin page</h1>
 
 <table>
+  <tr>
+  <th>Shelter</th>
+  <th># Beds</th>
+  <th>Update Beds</th>
+  </tr>
   <% @shelters.each do |shelter| %>
     <tr>
       <form id=<%= shelter.id %> class='shelterrow'>
         <td><%= shelter.name %></td>
+        <td><%= shelter.open_beds %></td>
         <td>
           <input type='text' id=<%= "#{shelter.id}input" %> value=<%= shelter.open_beds %>
         </td>
@@ -32,7 +38,6 @@ for (var i = 0; i < buttons.length; i++){
   $(form).on('submit', function(e){
     e.preventDefault()
     var id = $($(this)).attr('id')
-    console.log(id)
     var publishVal = $('#' + id + 'input').val()
 
     pubnub.publish(

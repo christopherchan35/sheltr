@@ -15,8 +15,8 @@
       <tr class='shelterrow'>
         <td><%= shelter.name %></td>
         <td><%= shelter.location %></td>
-        <td><%= shelter.total_beds %></td>
-        <td id=<%= "#{shelter.id}" %>><%= shelter.open_beds %></td>
+        <td class='totalBeds'><%= shelter.total_beds %></td>
+        <td id=<%= "#{shelter.id}" %> class='open_beds'><%= shelter.open_beds %></td>
       </tr>
     <% end %>
   </tbody>
@@ -25,6 +25,7 @@
 <br>
 
 <script>
+
 var pubnub = new PubNub({
     subscribeKey: 'sub-c-677de3da-efe8-11e6-87db-0619f8945a4f'
 });
@@ -38,8 +39,26 @@ pubnub.addListener({
         setTimeout(function(){
           td.removeClass('tdAnimateClass')
         }, 3000)
+        styleRows()
     }
 })
+
+var styleRows = function() {
+  var rows = $('.shelterrow')
+  for (var i = 0; i < rows.length; i++){
+    var total = $(rows[i]).children('.totalBeds')[0]
+    total = $(total).text()
+    var avail = $(rows[i]).children('.open_beds')[0]
+    avail = $(avail).text()
+    if (+avail >= 10){
+      $(rows[i]).css('color', 'green')
+    } else {
+      $(rows[i]).css('color', 'red')
+    }
+  }
+}
+
+styleRows()
 
 pubnub.subscribe({
     channels: ['tic-tac-toe']
