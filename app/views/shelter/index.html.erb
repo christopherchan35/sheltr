@@ -1,6 +1,6 @@
 <h1>Shelters</h1>
 
-<table>
+<table id='indexTable'>
   <thead>
     <tr>
       <th>Sheltername</th>
@@ -15,8 +15,8 @@
       <tr class='shelterrow'>
         <td><%= shelter.name %></td>
         <td><%= shelter.location %></td>
-        <td><%= shelter.total_beds %></td>
-        <td id=<%= "#{shelter.id}" %>><%= shelter.open_beds %></td>
+        <td class='totalBeds center'><%= shelter.total_beds %></td>
+        <td id=<%= "#{shelter.id}" %> class='open_beds center'><%= shelter.open_beds %></td>
       </tr>
     <% end %>
   </tbody>
@@ -46,30 +46,56 @@
     </script>
 
 <script>
-var pubnub = new PubNub({
-    subscribeKey: <%= ENV['PUBNUB_SUB'] %>
-});
 
+var subKey;
 
-pubnub.addListener({
-    message: function(message) {
-      var td = $('#' + message.message.name)
-        td.html(message.message.value)
-        td.css('background', 'red')
-
-        setTimeout(function(){
-          td.css('transition', 'background 5s')
-          td.css('background', 'white')
-          setTimeout(function(){
-            td.css('transition', 'none')
-          }, 5000)
-        }, 0)
-
-    }
+var request = $.ajax({
+  url: '/subKey',
+  type: 'get'
 })
+request.done(function(r){
 
-pubnub.subscribe({
-    channels: ['tic-tac-toe']
-});
+})
+request.fail(function(r){
+   subKey = r.responseText
+
+  var pubnub = new PubNub({
+      subscribeKey: subKey
+  });
+
+  pubnub.addListener({
+      message: function(message) {
+        var td = $('#' + message.message.name)
+          td.html(message.message.value)
+          td.addClass('tdAnimateClass')
+          setTimeout(function(){
+            td.removeClass('tdAnimateClass')
+          }, 3000)
+          styleRows()
+      }
+  })
+
+  var styleRows = function() {
+    var rows = $('.shelterrow')
+    for (var i = 0; i < rows.length; i++){
+      var total = $(rows[i]).children('.totalBeds')[0]
+      total = $(total).text()
+      var avail = $(rows[i]).children('.open_beds')[0]
+      avail = $(avail).text()
+      if (+avail >= 10){
+        $(rows[i]).css('color', 'green')
+      } else {
+        $(rows[i]).css('color', 'red')
+      }
+    }
+  }
+
+  styleRows()
+
+  pubnub.subscribe({
+      channels: ['tic-tac-toe']
+  });
+
+})
 
 </script>
