@@ -1,1 +1,57 @@
-sup
+<h1>Admin page</h1>
+
+<table>
+  <% @shelters.each do |shelter| %>
+    <tr>
+      <form id=<%= shelter.id %> class='shelterrow'>
+        <td><%= shelter.name %></td>
+        <td>
+          <input type='text' id=<%= "#{shelter.id}input" %> value=<%= shelter.open_beds %>
+        </td>
+        <td>
+          <input type='submit'>
+        </td>
+      </form>
+    </tr>
+  <% end %>
+</table>
+
+
+<script>
+
+var pubnub = new PubNub({
+    subscribeKey: 'sub-c-677de3da-efe8-11e6-87db-0619f8945a4f', // always required
+    publishKey: 'pub-c-9a3e8a26-c923-488b-a015-186681fe458b' // only required if publishing
+});
+
+
+var buttons = $('.shelterrow')
+
+for (var i = 0; i < buttons.length; i++){
+  var form = $(buttons[i])
+  $(form).on('submit', function(e){
+    e.preventDefault()
+    var id = $($(this)).attr('id')
+    console.log(id)
+    var publishVal = $('#' + id + 'input').val()
+
+    pubnub.publish(
+    {
+        message: {
+            name: id,
+            value: publishVal
+        },
+        channel: 'tic-tac-toe'
+    }
+);
+
+
+  })
+}
+
+
+
+
+
+
+</script>
