@@ -3,10 +3,10 @@
 <table>
   <% @shelters.each do |shelter| %>
     <tr>
-      <form id=<%= shelter.name %> class='shelterrow'>
+      <form id=<%= shelter.id %> class='shelterrow'>
         <td><%= shelter.name %></td>
         <td>
-          <input type='text' id=<%= "#{shelter.name}input" %> value=<%= shelter.open_beds %>
+          <input type='text' id=<%= "#{shelter.id}input" %> value=<%= shelter.open_beds %>
         </td>
         <td>
           <input type='submit'>

@@ -16,7 +16,7 @@
         <td><%= shelter.name %></td>
         <td><%= shelter.location %></td>
         <td><%= shelter.total_beds %></td>
-        <td id=<%= "#{shelter.name}" %>><%= shelter.open_beds %></td>
+        <td id=<%= "#{shelter.id}" %>><%= shelter.open_beds %></td>
       </tr>
     <% end %>
   </tbody>
@@ -25,7 +25,6 @@
 <br>
 
 <script>
-console.log('hi')
 var pubnub = new PubNub({
     subscribeKey: 'sub-c-677de3da-efe8-11e6-87db-0619f8945a4f'
 });
@@ -33,9 +32,18 @@ var pubnub = new PubNub({
 
 pubnub.addListener({
     message: function(message) {
-        $('#updateShelter').html(message.message.name)
-        $('#updateMe').html(message.message.value)
-        $('#' + message.message.name).html(message.message.value)
+      var td = $('#' + message.message.name)
+        td.html(message.message.value)
+        td.css('background', 'red')
+
+        setTimeout(function(){
+          td.css('transition', 'background 5s')
+          td.css('background', 'white')
+          setTimeout(function(){
+            td.css('transition', 'none')
+          }, 5000)
+        }, 0)
+
     }
 })
 
