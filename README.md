@@ -1,10 +1,11 @@
-[!sheltr logo](/public/LOGO.png)
+  ![sheltr logo](/public/LOGO.png)
 # Shelter
 ___
 
 Sheltr provides information about services to the people who need them most, the homeless. A technical solution that reaches out to those who may have limited access to technology.
 
 Sheltr uses PubNub's publish and subscribe SDK to allow service providers such as shelters to update crucial information in real time. As subscribers digital billboards placed at bus stations would display information. This information is filtered through the Google maps API to display location and transit directions based on current traffic conditions.
+
   ![sheltr demo](/public/demo.gif)
 # Functions
 ___
@@ -20,4 +21,4 @@ ___
 3. Run `bundle install` to install dependencies
 4. Run `rails db:create db:migrate db:seed` to set up the database
 5. Run `rails s` to initiate server
-6. Open [local host](localhost:3000) on your browser
+6. Open [local host](http://localhost:3000) on your browser
