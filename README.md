@@ -21,4 +21,4 @@ ___
 3. Run `bundle install` to install dependencies
 4. Run `rails db:create db:migrate db:seed` to set up the database
 5. Run `rails s` to initiate server
-6. Open [local host](http://localhost:3000) on your browser
+6. Open [local host](http://localhost:3000) in your browser
