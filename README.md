@@ -4,14 +4,13 @@ ___
 
 Sheltr provides information about services to the people who need them most, the homeless. A technical solution that reaches out to those who may have limited access to technology.
 
-Sheltr uses PubNub's publish and subscribe SDK to allow service providers such as shelters to update crucial information in real time. As subscribers digital bilboards placed at bus stations would display information. This information is filtered through the Google maps api to display location and transit directions based on current trafic conditions.
-
-[!sheltr demo](/public/demo.gif)
+Sheltr uses PubNub's publish and subscribe SDK to allow service providers such as shelters to update crucial information in real time. As subscribers digital billboards placed at bus stations would display information. This information is filtered through the Google maps API to display location and transit directions based on current traffic conditions.
+  ![sheltr demo](/public/demo.gif)
 # Functions
 ___
-- Administrator access to availible resources - ([sheltr/app/views/shelter/new.html.erb](https://github.com/christopherchan35/sheltr/blob/development/app/views/shelter/new.html.erb))
+- Administrator access to available resources - ([sheltr/app/views/shelter/new.html.erb](https://github.com/christopherchan35/sheltr/blob/development/app/views/shelter/new.html.erb))
 - Live update of service address, map location, resource status - ([sheltr/app/views/shelter/index.html.erb](https://github.com/christopherchan35/sheltr/blob/development/app/views/shelter/index.html.erb))
-- Map with driections from origin pint to multiple locations - ([sheltr/app/views/shelter/index.html.erb](https://github.com/christopherchan35/sheltr/blob/development/app/views/shelter/index.html.erb))
+- Map with directions from origin pint to multiple locations - ([sheltr/app/views/shelter/index.html.erb](https://github.com/christopherchan35/sheltr/blob/development/app/views/shelter/index.html.erb))
 
 # Local Usage
 ___
