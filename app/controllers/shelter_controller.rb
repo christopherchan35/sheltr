@@ -33,4 +33,7 @@ class ShelterController < ApplicationController
     end
   end
 
+  def logo
+  end
+
 end
